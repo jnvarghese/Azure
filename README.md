@@ -5,13 +5,6 @@ Azure
 https://linuxacademy.com/course/az-500-microsoft-azure-security-technologies/
 https://linuxacademy.com/course/microsoft-certified-azure-developer-exam-203-prep/
 
-Requesting a Disposable Cloud Environment
-https://commercialcloud.optum.com/docs/dce/request.html
-
-Azure AZ 300
-jinuaz300@outlook.com
-myPassword!23
-
 
 
 VNET
