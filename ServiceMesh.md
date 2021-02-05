@@ -4,6 +4,18 @@ https://kublr.com/blog/implementing-a-service-mesh-with-istio-to-simplify-micros
 
 https://blog.codeship.com/an-overview-of-the-service-mesh-and-its-tooling-options/
 
+A service mesh at it’s most fundamental level is a network overlay. Network traffic that crosses the service mesh still rides on traditional switches and routers (or their cloud analogues), but that traffic is encapsulated within another layer that the lower-level devices do not see into. You might compare it to putting a letter into an envelope and mailing it. The sender and recipient can read the letter, but the mail system just passes the envelope around.
+
+![Service Mesh Flow](https://www.singlestoneconsulting.com/wp-content/uploads/2020/04/Service-Mesh-Flow.png)
+
+![Control Plane Implementation](https://www.singlestoneconsulting.com/wp-content/uploads/2020/04/Screen-Shot-2020-04-09-at-12.48.00-PM-1300x624.png)
+
+This has three important implications for the network and security teams:
+
+All traffic in the mesh will be encrypted by default.
+Some traditional security technologies (layer 2 IDS/IPS I’m looking at you here) will not function as desired on service mesh traffic due to that encryption.
+Endpoints in a service mesh can be placed anywhere that has layer 3 connectivity with the other mesh endpoints (on premise, in the cloud, etc).
+
 The two main goals of a service mesh are to allow insight into previously invisible service communications layers and to gain full control of all microservices communication logic, like dynamic service discovery, load balancing, timeouts, fallbacks, retries, circuit breaking, distributed tracing, and security policy enforcement between services. 
 
  implementing one of the fully featured service mesh systems in your cluster (Linkerd, Istio or Conduit), will provide you with the following possibilities;
@@ -41,3 +53,5 @@ Control plane:
 * Istio-Auth: provides “service to service” and “user to service” authentication and can convert unencrypted traffic to TLS based between services. Soon will be able to provide access audit information (work in progress).
 Data plane:
 * Envoy: feature rich proxy, that is being managed by control plane components. Intercepts traffic to and from the service and applies the needed routing and access policies following the rules set in the control plane.
+
+
