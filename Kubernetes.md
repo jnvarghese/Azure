@@ -66,3 +66,71 @@ As a short definition, an Ingress is a rule that charts how a service, walled in
 
 ### Reset workflow
 `kubeadm reset` is responsible for cleaning up a node local file system from files that were created using the `kubeadm init` or `kubeadm join` commands. For control-plane nodes reset also removes the local stacked etcd member of this node from the etcd cluster and also removes this node's information from the kubeadm ClusterStatus object. ClusterStatus is a kubeadm managed Kubernetes API object that holds a list of kube-apiserver endpoints.
+
+
+ 
+JMP Webinar
+Webinar: Data Scientists in a Box - Case Studies to turbo-chareg your model-building
+
+Topics: AI | Data Science | Data Visualization | Deep Learning | Machine Learning | NLP | Python | R | Statistics
+
+How to Deploy a Flask API in Kubernetes and Connect it with Other Micro-services
+<= Previous postNext post =>
+ 
+ 
+
+
+
+Share16
+
+Tags: API, Containers, Flask, Kubernetes, MySQL, Python, SQL
+
+A hands-on tutorial on how to implement your micro-service architecture using the powerful container orchestration tool Kubernetes.
+KNIME Analytics Platform for Visual Workflow Users Webinar, Feb 10
+KNIME Analytics Platform for Visual Workflow Users
+Webinar, Feb 10
+
+
+comments
+By Rik Kraan, Vantage AI
+
+Kubernetes is a powerful container orchestration tool that automates deployment and management of containers. If you have a simple lightweight application that exists of one service, don’t bother using Kubernetes. Kubernetes’ benefits emerge if your application has a micro-service architecture with several components working together. It is a ‘open-source system for automating deployment, scaling and management of containerized applications and comes with several benefits including:
+
+Easy (auto-)scaling based on demand
+Ways to make your application fault tolerant by distributing workloads in a way that it will remain functional in case of partial failure
+Automated health-checks and self-healing processes
+Taking care of the communication between your micro-services and balancing incoming traffic evenly over all your resources
+Starting with Kubernetes may seem daunting at first, but if you grasp the main concepts of it and play around with the excellent tutorials on the official website, you can get started fairly easily.
+
+In this blog I will:
+
+Provide a quick overview of the main concepts of Kubernetes
+Demonstrate how to start your own local cluster
+Deploy a MySQL database on your cluster
+Set up an Flask app that functions as REST API to communicate with the database
+Figure
+Network. Photo by Alina Grubnyak on Unsplash
+
+ 
+
+Kubernetes basics
+ 
+In this section I will cover the basics of Kubernetes without too many details; feel free to dive deeper by reading the official documentation.
+
+A Kubernetes cluster consists of a master and one or more worker nodes. This architecture is one of the main features of Kubernetes. As you will see, your micro-services are distributed over different nodes so they will remain healthy if one of the worker nodes fails. The master is responsible for managing the cluster and exposes the API via which you can communicate with your cluster. By default, worker nodes come with a few components including some pre-installed software that enables running containers of popular container services as Docker and containerd.
+
+Three main concepts are essential to deploy your own applications on a Kubernetes cluster: Deployments, Pods and Services.
+
+A Deployment is a set of instructions provided to the master on how to create and update your application. With these instructions the master will schedule and run your application on individual worker nodes. The deployment is continuously monitored by the master. If one of the instances of your applications goes down (e.g. if a worker node goes down), it will be automatically replaced by a new instance.
+Figure
+Kubernetes cluster with a deployment (source: https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/)
+
+ 
+
+A Pod is the atomic unit within the Kubernetes platform. It represents a group of one or more containers and some shared resources for those containers (shared storage, a unique cluster IP address etc.). If you create a deployment, this deployment will create pods with containers inside them. Each pod is bound to a worker node. It is essential to understand that a worker node can have multiple pods, and all these pods will be rebuild on a different available worker node if the current worker node fails.
+Figure
+Overview of a worker node with several pods (source: https://kubernetes.io/docs/tutorials/kubernetes-basics/explore/explore-intro/)
+
+ 
+
+A service basically defines a logical set of pods and defines a policy on how to access them. This is necessary as pods can go down and be restarted (e.g. if a worker node is deleted or crashes). A service routes traffic across a set of pods and allow pods to die and replicate without impacting your application. When defining a service, you can specify the type of the service. By default Kubernetes creates a ClusterIP service, which makes your service only accessible from inside the cluster.
