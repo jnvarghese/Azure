@@ -21,6 +21,10 @@ Kubernetes is the main consumer for etcd project, initiated by CoreOS
 
 Kubernetes already has a very basic “service mesh” out-of-the-box; it’s the “service” resource. It provides service discovery by targeting the needed pods, and a round-robin balancing of requests. A “service” works by managing iptables on each host in the cluster, allowing only a round-robin load balancing approach, with no retries and back off logic, and no other features that we might expect a modern service mesh to handle
 
+
+### Namespaces
+Namespace are a logical way to break a cluster up into logical constructs and also allow you to define RBAC; pod security policies; network policies (to separate workloads); and quotas.
+
 1) Choose the Most Appropriate Kubernetes Controller
 
 Deployment, StatefulSet, and DaemonSet are the most often used controllers in Kubernetes.
