@@ -21,6 +21,10 @@ Kubernetes is the main consumer for etcd project, initiated by CoreOS
 
 Kubernetes already has a very basic “service mesh” out-of-the-box; it’s the “service” resource. It provides service discovery by targeting the needed pods, and a round-robin balancing of requests. A “service” works by managing iptables on each host in the cluster, allowing only a round-robin load balancing approach, with no retries and back off logic, and no other features that we might expect a modern service mesh to handle
 
+
+### Namespaces
+Namespace are a logical way to break a cluster up into logical constructs and also allow you to define RBAC; pod security policies; network policies (to separate workloads); and quotas.
+
 1) Choose the Most Appropriate Kubernetes Controller
 
 Deployment, StatefulSet, and DaemonSet are the most often used controllers in Kubernetes.
@@ -122,15 +126,15 @@ A Kubernetes cluster consists of a master and one or more worker nodes. This arc
 Three main concepts are essential to deploy your own applications on a Kubernetes cluster: Deployments, Pods and Services.
 
 A Deployment is a set of instructions provided to the master on how to create and update your application. With these instructions the master will schedule and run your application on individual worker nodes. The deployment is continuously monitored by the master. If one of the instances of your applications goes down (e.g. if a worker node goes down), it will be automatically replaced by a new instance.
-Figure
-Kubernetes cluster with a deployment (source: https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/)
+![Figure](https://github.com/jnvarghese/Azure/blob/master/image/1_XwP9kOVopeyg_OC2jikMKg.png?raw=true)
 
  
 
 A Pod is the atomic unit within the Kubernetes platform. It represents a group of one or more containers and some shared resources for those containers (shared storage, a unique cluster IP address etc.). If you create a deployment, this deployment will create pods with containers inside them. Each pod is bound to a worker node. It is essential to understand that a worker node can have multiple pods, and all these pods will be rebuild on a different available worker node if the current worker node fails.
-Figure
-Overview of a worker node with several pods (source: https://kubernetes.io/docs/tutorials/kubernetes-basics/explore/explore-intro/)
+![Figure](https://github.com/jnvarghese/Azure/blob/master/image/1_3phpgpd52nU86LLNS85VLQ.png?raw=true)
 
  
 
 A service basically defines a logical set of pods and defines a policy on how to access them. This is necessary as pods can go down and be restarted (e.g. if a worker node is deleted or crashes). A service routes traffic across a set of pods and allow pods to die and replicate without impacting your application. When defining a service, you can specify the type of the service. By default Kubernetes creates a ClusterIP service, which makes your service only accessible from inside the cluster.
+
+![Figure](https://github.com/jnvarghese/Azure/blob/master/image/1_wroUOpgrvj9WLbd3_F8fnA.png?raw=true)
