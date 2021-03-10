@@ -1,5 +1,12 @@
 Kubernetes 
 
+The Kubernetes Concepts documentation describes the distinction between the Kubernetes master and non-master nodes as follows:
+
+The Kubernetes Master is a collection of three processes that run on a single node in your cluster, which is designated as the master node. Those processes are:    `kube-apiserver, kube-controller-manager and kube-scheduler.`
+Each individual non-master node in your cluster runs two processes:
+ -  kubelet, which communicates with the Kubernetes Master.
+ -  kube-proxy, a network proxy which reflects Kubernetes networking services on each node.
+
 East-west communication with KubeProxy¶
 
 When you create a Kubernetes deployment for a microservice, Kubernetes deploys a set of pods based on the replica count. To access those pods, you create a Kubernetes service which provides an abstraction to access those pods. The abstraction is provided by assigning a Cluster IP address to the service.
